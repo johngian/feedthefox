@@ -20,6 +20,7 @@ class Build(models.Model):
     name = models.CharField(max_length=120)
     date = models.DateField(auto_now_add=True)
     link = models.URLField(blank=True, default='')
+    comment = models.TextField(blank=True, default='')
 
     def __str__(self):
         return self.name
@@ -37,6 +38,7 @@ class Device(models.Model):
     users = models.ManyToManyField(settings.AUTH_USER_MODEL, related_name='devices',
                                    through='DeviceInfo', blank=True)
     type = models.CharField(max_length=120, default=DEFAULT_DEVICE_TYPE)
+    link = models.URLField(blank=True, default='')
 
     def __str__(self):
         return u'{0} {1}'.format(self.model, self.manufacturer)
